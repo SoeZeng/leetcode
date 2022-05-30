@@ -1,4 +1,4 @@
-package dynamic_programming;
+package 剑指offer;
 
 import java.util.Scanner;
 
