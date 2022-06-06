@@ -24,21 +24,21 @@ public class BinaryTreeCameras_968 {
 //        while(in.hasNext()) {
 //            String str = in.nextLine();
 //            String[] arr = str.split(",");
-//            TreeNode root = null;
-//            TreeNode p = null;
-//            List<TreeNode> list = new ArrayList<>();
+//            dynamic_programming.TreeNode root = null;
+//            dynamic_programming.TreeNode p = null;
+//            List<dynamic_programming.TreeNode> list = new ArrayList<>();
 //            for (int i = 1; i <= arr.length; i++) {
 //                if(i == 1) {
-//                    root = new TreeNode(Integer.parseInt(arr[i - 1]));
+//                    root = new dynamic_programming.TreeNode(Integer.parseInt(arr[i - 1]));
 //                    list.add(root);
 //                } else {
 //                    p = list.get(0);
 //                    if(2 * i <= arr.length) {
-//                        p.left = "null".equals(arr[2 * i - 1]) ? null : new TreeNode(Integer.parseInt(arr[2 * i - 1]));
+//                        p.left = "null".equals(arr[2 * i - 1]) ? null : new dynamic_programming.TreeNode(Integer.parseInt(arr[2 * i - 1]));
 //                        list.add(p.left);
 //                    }
 //                    if(p != null && 2 * i + 1 <= arr.length) {
-//                        p.right = "null".equals(arr[2 * i]) ? null : new TreeNode(Integer.parseInt(arr[2 * i]));
+//                        p.right = "null".equals(arr[2 * i]) ? null : new dynamic_programming.TreeNode(Integer.parseInt(arr[2 * i]));
 //                        list.add(p.right);
 //                    }
 //                    list.remove(0);
