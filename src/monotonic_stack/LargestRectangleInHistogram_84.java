@@ -1,5 +1,7 @@
 package monotonic_stack;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class LargestRectangleInHistogram_84 {
@@ -78,6 +80,28 @@ public class LargestRectangleInHistogram_84 {
             /**
              * 单调栈
              */
+            int[] newHeights = new int[heights.length + 2]; // 数组扩容
+            newHeights[0] = 0;
+            newHeights[newHeights.length - 1] = 0;
+            for(int i = 0; i < heights.length; i++) {
+                newHeights[i + 1] = heights[i];
+            }
+            Deque<Integer> stack = new LinkedList<>();
+            int res = newHeights[0];
+            stack.push(0);
+
+            for(int i = 1; i < newHeights.length; i++) {
+                while(!stack.isEmpty() && newHeights[i] < newHeights[stack.peek()]) {
+                    int mid = stack.peek();
+                    stack.pop();
+                    if(!stack.isEmpty()) {
+                        int h = newHeights[mid];
+                        int w = i - stack.peek() - 1;
+                        if(ans < h * w) ans = h * w;
+                    }
+                }
+                stack.push(i);
+            }
 
 
             return ans;
