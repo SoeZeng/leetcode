@@ -11,7 +11,7 @@ public class SortArrayByParity2_922 {
             String s = in.nextLine();
             String[] strs = s.split(",");
             int[] nums = new int[strs.length];
-            for (int i = 0; i < ; i++) {
+            for (int i = 0; i < nums.length; i++) {
                 nums[i] = Integer.parseInt(strs[i]);
             }
             int[] ans = sol.sortArrayByParityII(nums);
