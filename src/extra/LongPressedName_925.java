@@ -39,7 +39,7 @@ public class LongPressedName_925 {
                 if(index == 0 && c != typedChars[index]) return false;
 
                 // 跨越重复项
-                while(index < typedChars.length && typedChars[index] == typedChars[index - 1]) {
+                while(index < typedChars.length && c != typedChars[index] && typedChars[index] == typedChars[index - 1]) {
                     index++;
                 }
                 // 跨越重复项后依然不匹配
