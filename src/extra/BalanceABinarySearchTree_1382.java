@@ -1,6 +1,5 @@
 package extra;
 
-import java.sql.SQLOutput;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -9,6 +8,8 @@ import java.util.Scanner;
 public class BalanceABinarySearchTree_1382 {
 
     public static void main(String[] args) {
+
+//        System.out.println(Runtime.getRuntime().availableProcessors());
         Solution sol = new Solution();
         Scanner in = new Scanner(System.in);
 //        while(in.hasNext()) {
