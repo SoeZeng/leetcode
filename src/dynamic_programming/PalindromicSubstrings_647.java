@@ -16,7 +16,6 @@ public class PalindromicSubstrings_647 {
 
     static class Solution {
 
-
         int res = 0;
 
         /**
