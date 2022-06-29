@@ -18,7 +18,7 @@ public class PalindromePartition2_132 {
     }
 
     static class Solution {
-        int res = 0;
+//        int res = 0;
 
         /**
          * 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文。
@@ -33,6 +33,7 @@ public class PalindromePartition2_132 {
             if(s == null || s.length() <= 1)
                 return 0;
             int len = s.length();
+            // 范围是[0, i]的回文子串，最少分割次数是dp[i]
             int dp[] = new int[len];
             Arrays.fill(dp, len-1);
             for(int i = 0; i < len; i++){
@@ -49,7 +50,7 @@ public class PalindromePartition2_132 {
              */
 //            int n = s.length();
 //            char[] chars = s.toCharArray();
-//            longestPalindrom(chars,0,n-1);
+//            longestPalindrome(chars,0,n-1);
 //            return res - 1;
 
         }
@@ -89,8 +90,8 @@ public class PalindromePartition2_132 {
 //
 //            res++;
 //            System.out.println(left +"," + right);
-//            longestPalindrom(chars,start,start + left - 1);
-//            longestPalindrom(chars,start + right + 1,end);
+//            longestPalindrome(chars,start,start + left - 1);
+//            longestPalindrome(chars,start + right + 1,end);
 //        }
     }
 }
