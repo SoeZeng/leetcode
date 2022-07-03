@@ -25,7 +25,7 @@ public class RedundantConnection2_685 {
 
     static class Solution {
 
-        private static final int N = 1010;  // 如题：二维数组大小的在3到1000范围内
+        private static final int N = 1001;  // 如题：二维数组大小的在3到1000范围内
         private int[] father;
         public Solution() {
             father = new int[N];
