@@ -150,6 +150,75 @@ public class RedundantConnection2_685 {
 
             // 明确没有入度为2的情况，那么一定有有向环，找到构成环的边返回就可以了
             return getRemoveEdge(edges);
+
+//            int n = 1001;
+//            int[] father = new int[n];
+//            public int[] findRedundantDirectedConnection(int[][] edges) {
+//                int[] inDegree = new int[n];
+//
+//                // 记录各节点入度
+//                for(int[] edge : edges) {
+//                    inDegree[edge[1]] ++;
+//                }
+//
+//                int[] res = null;
+//                for(int[] edge : edges) {
+//                    if(inDegree[edge[1]] == 2 && isTreeAfterRemoveEdge(edges, edge)) {
+//                        res = edge;
+//                    }
+//                }
+//
+//                return  res == null ? getRemoveEdge(edges) : res;
+//            }
+//
+//            public boolean isTreeAfterRemoveEdge(int[][] edges, int[] DelEdge) {
+//                init();
+//                for(int[] edge : edges) {
+//                    if(edge == DelEdge) continue;
+//
+//                    if(same(edge[0], edge[1])) return false;
+//
+//                    joint(edge[0], edge[1]);
+//                }
+//
+//                return true;
+//            }
+//
+//            public int[] getRemoveEdge(int[][] edges) {
+//                init();
+//
+//                for(int[] edge : edges) {
+//                    if(same(edge[0], edge[1])) return edge;
+//
+//                    joint(edge[0], edge[1]);
+//                }
+//
+//                return null;
+//            }
+//
+//            public void init() {
+//                for(int i = 0; i < n; i++) {
+//                    father[i] = i;
+//                }
+//            }
+//
+//            public int find(int u) {
+//                if(u == father[u]) return u;
+//                return find(father[u]);
+//            }
+//
+//            public void joint(int u, int v) {
+//                v = find(v);
+//                u = find(u);
+//                if(u == v) return;
+//                father[v] = u;
+//            }
+//
+//            public boolean same(int u, int v) {
+//                u = find(u);
+//                v = find(v);
+//                return u == v;
+//            }
         }
     }
 }
