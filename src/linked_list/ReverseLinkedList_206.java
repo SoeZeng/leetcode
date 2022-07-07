@@ -16,6 +16,9 @@ public class ReverseLinkedList_206 {
          */
         public ListNode reverseList(ListNode head) {
 
+            /**
+             * 迭代
+             */
             ListNode cur = head;
             head = null;
 
@@ -27,6 +30,23 @@ public class ReverseLinkedList_206 {
             }
 
             return head;
+
+            /**
+             * 递归
+             */
+//            ListNode pre = null;
+//            ListNode cur = head;
+//
+//            return reverse(pre, cur);
+        }
+
+        public ListNode reverse(ListNode pre, ListNode cur) {
+            if(cur == null) return pre;
+
+            ListNode next = cur.next;
+            cur.next = pre;
+            return reverse(cur, next);
+
         }
     }
 }
