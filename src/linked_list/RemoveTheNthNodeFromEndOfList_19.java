@@ -17,7 +17,7 @@ public class RemoveTheNthNodeFromEndOfList_19 {
                 node = node.next;
             }
             int n = Integer.parseInt(in.nextLine());
-            ListNode head = sol.removeNthFromEnd(dummyNode.next, n);
+            sol.removeNthFromEnd(dummyNode.next, n)
         }
     }
 
