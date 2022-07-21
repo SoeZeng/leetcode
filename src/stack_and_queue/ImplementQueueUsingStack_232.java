@@ -1,8 +1,19 @@
 package stack_and_queue;
 
+import org.junit.Test;
+
 import java.util.Stack;
 
 public class ImplementQueueUsingStack_232 {
+
+    // 多态性测试
+//    @Test
+//    public void test() {
+//        Person p = new Student();
+//        p.show();
+//        //p.study()
+//
+//    }
 
     public static void main(String[] args) {
 
@@ -55,3 +66,20 @@ public class ImplementQueueUsingStack_232 {
         }
     }
 }
+
+//class Person {
+//    public void show() {
+//        System.out.println("Person");
+//    }
+//}
+//
+//class Student extends Person {
+//    @Override
+//    public void show() {
+//        System.out.println("Student");
+//    }
+//
+//    public void study() {
+//        System.out.println("Study");
+//    }
+//}
