@@ -2,6 +2,7 @@ package binary_tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class BinaryTreeInorderTraversal_94 {
 
@@ -20,7 +21,28 @@ class Solution94 {
      * @return 树节点的中序遍历
      */
     public List<Integer> inorderTraversal(TreeNode root) {
+
+        // 递归
         traverse(root);
+
+        // 迭代
+        if(root == null) return res;
+
+        Stack<TreeNode> stack = new Stack<>();
+
+        TreeNode p = root;
+
+        while(p != null || !stack.empty()) {
+            if(p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                p = stack.pop();
+                res.add(p.val);
+                p = p.right;
+            }
+        }
+
         return res;
     }
 
