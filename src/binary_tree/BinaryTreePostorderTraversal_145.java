@@ -12,6 +12,7 @@ public class BinaryTreePostorderTraversal_145 {
 class Solution145 {
     List<Integer> res = new ArrayList<>();
     public List<Integer> postorderTraversal(TreeNode root) {
+        // 迭代
         traverse(root);
         return res;
     }
