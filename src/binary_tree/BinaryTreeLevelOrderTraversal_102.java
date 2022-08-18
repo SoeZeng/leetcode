@@ -15,8 +15,8 @@ public class BinaryTreeLevelOrderTraversal_102 {
 class Solution102 {
     /**
      * 二叉树的层序遍历
-     * @param root
-     * @return
+     * @param root 根节点
+     * @return 二叉树节点的层序遍历
      */
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
