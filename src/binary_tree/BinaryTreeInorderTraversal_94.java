@@ -30,20 +30,40 @@ class Solution94 {
 
         Stack<TreeNode> stack = new Stack<>();
 
-        TreeNode p = root;
-
-        while(p != null || !stack.empty()) {
-            if(p != null) {
-                stack.push(p);
-                p = p.left;
-            } else {
-                p = stack.pop();
-                res.add(p.val);
-                p = p.right;
-            }
-        }
+//        TreeNode p = root;
+//
+//        while(p != null || !stack.empty()) {
+//            if(p != null) {
+//                stack.push(p);
+//                p = p.left;
+//            } else {
+//                p = stack.pop();
+//                res.add(p.val);
+//                p = p.right;
+//            }
+//        }
 
         // 统一迭代
+        stack.push(root);
+
+        while(!stack.empty()) {
+            TreeNode p = stack.peek();
+            if(p != null) {
+                stack.pop();
+
+                if(p.right != null) stack.push(p.right);
+
+                stack.push(p);
+                stack.push(null);
+
+                if(p.left != null) stack.push(p.left);
+            } else {
+                stack.pop();
+                p = stack.peek();
+                stack.pop();
+                res.add(p.val);
+            }
+        }
 
         return res;
     }
