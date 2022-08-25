@@ -25,11 +25,31 @@ class Solution144 {
 
         stack.push(root);
 
+//        while(!stack.empty()) {
+//            TreeNode p = stack.pop();
+//            res.add(p.val);
+//            if(p.right != null) stack.push(p.right);
+//            if(p.left != null) stack.push(p.left);
+//
+//        }
+
+        // 统一迭代
         while(!stack.empty()) {
-            TreeNode p = stack.pop();
-            res.add(p.val);
-            if(p.right != null) stack.push(p.right);
-            if(p.left != null) stack.push(p.left);
+            TreeNode p = stack.peek();
+            if(p != null) {
+                stack.pop();
+
+                if(p.right != null) stack.push(p.right);
+                if(p.left != null) stack.push(p.left);
+
+                stack.push(p);
+                stack.push(null);
+            }else {
+                stack.pop();
+                p = stack.peek();
+                stack.pop();
+                res.add(p.val);
+            }
 
         }
 
