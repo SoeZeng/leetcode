@@ -1,9 +1,19 @@
 package binary_tree;
 
+import java.util.Scanner;
+
 public class BalancedBinaryTree_110 {
 
     public static void main(String[] args) {
-        Solution110 sol = new Solution110();
+
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            Solution110 sol = new Solution110();
+            TreeNode root = new TreeNode();
+            boolean ans = sol.isBalanced(root);
+            System.out.println(ans);
+        }
+
     }
 }
 
