@@ -39,7 +39,7 @@ class Solution257 {
             String path = (String)stack.pop();
             TreeNode p = (TreeNode) stack.pop();
 
-            if(root.left == null && root.right == null) {
+            if(p.left == null && p.right == null) {
                 res.add(path);
             }
 
