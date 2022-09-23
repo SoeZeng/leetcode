@@ -1,5 +1,7 @@
 package binary_tree;
 
+import java.util.Stack;
+
 public class SumOfLeftLeaves_404 {
 
     public static void main(String[] args) {
@@ -16,8 +18,32 @@ class Solution404 {
      */
     public int sumOfLeftLeaves(TreeNode root) {
 
-        int ans = traversal(root);
+        // 递归
+//        int ans = traversal(root);
+
+        // 递归
+        int ans = 0;
+
+        if(root == null) return ans;
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+
+        while(!stack.empty()) {
+            TreeNode p = stack.pop();
+            if(p.left != null) {
+                stack.push(p.left);
+                if(p.left.left == null && p.left.right == null) {
+                    ans += p.left.val;
+                }
+            }
+            if(p.right != null) {
+                stack.push(p.right);
+            }
+        }
+
         return ans;
+
 
     }
 
