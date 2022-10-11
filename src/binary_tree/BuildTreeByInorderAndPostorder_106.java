@@ -40,4 +40,24 @@ class Solution106 {
 
         return root;
     }
+
+//    public TreeNode buildTree(int[] inorder, int[] postorder) {
+//        if(inorder.length == 0) return null;
+//
+//        // 区间左闭右开
+//        return findNode(inorder, 0, inorder.length, postorder, 0, postorder.length);
+//    }
+//
+//    public TreeNode findNode(int[] inorder, int inBegin, int inEnd, int[] postorder, int postBegin, int postEnd) {
+//        if(inBegin >= inEnd || postBegin >= postEnd) return null;
+//
+//        TreeNode root = new TreeNode(postorder[postEnd - 1]);
+//        int idx = 0;
+//        while(idx < inEnd && inorder[idx] != root.val) {
+//            idx++;
+//        }
+//        root.left = findNode(inorder, inBegin, idx, postorder, postBegin, idx - inBegin + postBegin);
+//        root.right = findNode(inorder, idx + 1, inEnd, postorder, idx - inBegin + postBegin, postEnd - 1);
+//        return root;
+//    }
 }
