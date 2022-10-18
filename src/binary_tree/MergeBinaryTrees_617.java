@@ -1,5 +1,7 @@
 package binary_tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class MergeBinaryTrees_617 {
@@ -44,6 +46,32 @@ class Solution617 {
                 if (node1.left == null) {
                     node1.left = node2.left;
                 }
+            }
+        }
+
+        // 使用队列迭代
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root1);
+        que.offer(root2);
+
+        while(!que.isEmpty()) {
+
+            TreeNode p1 = que.poll();
+            TreeNode p2 = que.poll();
+            p1.val = p1.val + p2.val;
+
+            if(p1.left != null && p2.left != null) {
+                que.offer(p1.left);
+                que.offer(p2.left);
+            }else if(p1.left == null && p2.left != null) {
+                p1.left = p2.left;
+            }
+
+            if(p1.right != null && p2.right != null) {
+                que.offer(p1.right);
+                que.offer(p2.right);
+            } else if(p1.right == null && p2.right != null) {
+                p1.right = p2.right;
             }
         }
         return root1;
