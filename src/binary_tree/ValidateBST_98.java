@@ -12,6 +12,8 @@ public class ValidateBST_98 {
 
 class Solution98 {
     List<Integer> list = new ArrayList<>();
+    long maxVal = Long.MIN_VALUE;
+    TreeNode pre = null;
 
     /**
      *
@@ -19,22 +21,36 @@ class Solution98 {
      * @return 该二叉树是否是搜索二叉树
      */
     public boolean isValidBST(TreeNode root) {
-        inoderTraversal(root);
+        inorderTraversal(root);
 
-        for(int i = 1; i < list.size(); i++) {
-            if(list.get(i) <= list.get(i - 1)) {
-                return false;
-            }
-        }
+//        for(int i = 1; i < list.size(); i++) {
+//            if(list.get(i) <= list.get(i - 1)) {
+//                return false;
+//            }
+//        }
+//
+//        return true;
 
-        return true;
+        // 记录最大值，边遍历边比较
+//        boolean left = isValidBST(root.left);
+//        if(root.val <= maxVal) return false;
+//        maxVal = root.val;
+//        boolean right = isValidBST(root.right);
+
+        // 记录前一个节点
+        boolean left = isValidBST(root.left);
+        if(pre != null && root.val <= pre.val) return false;
+        pre = root;
+        boolean right = isValidBST(root.right);
+
+        return left && right;
     }
 
-    public void inoderTraversal(TreeNode root) {
+    public void inorderTraversal(TreeNode root) {
         if(root == null) return;
 
-        inoderTraversal(root.left);
+        inorderTraversal(root.left);
         list.add(root.val);
-        inoderTraversal(root.right);
+        inorderTraversal(root.right);
     }
 }
