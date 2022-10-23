@@ -14,7 +14,7 @@ class Solution236 {
      * @param root 二叉树根节点
      * @param p 指定节点p
      * @param q 指定节点q
-     * @return p和的最近公共祖先
+     * @return p和q的最近公共祖先
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         // 为空或找到p、q则返回
