@@ -13,7 +13,7 @@ public class Combinations_77 {
             int n = Integer.parseInt(in.nextLine());
             int k = Integer.parseInt(in.nextLine());
             Solution77 sol = new Solution77();
-            sol.combine(n, k)
+            sol.combine(n, k);
         }
     }
 }
