@@ -12,30 +12,55 @@ public class RestoreIPAddress_93 {
 
 class Solution93 {
     List<String> ans = new ArrayList<>();
+    StringBuilder tempStr = new StringBuilder();
     public List<String> restoreIpAddresses(String s) {
         backTracing(s, 0, 0);
         return ans;
     }
 
-    public void backTracing(String s, int startIndex, int pointNum) {
+//    public void backTracing(String s, int startIndex, int pointNum) {
+//
+//        if(pointNum == 3) {
+//            if(isValid(s, startIndex, s.length())) {
+//                ans.add(s);
+//            }
+//            return;
+//        }
+//
+//        for(int i = startIndex; i < startIndex + 3 && i < s.length() - (3 - pointNum); i++) {
+//            if(isValid(s, startIndex, i + 1)) {
+//                s = s.substring(0, i + 1) + "." + s.substring(i + 1);
+//                backTracing(s, i + 2, pointNum + 1);
+//                s = s.substring(0, i + 1) + s.substring(i + 2);
+//            } else {
+//                break;
+//            }
+//        }
+//
+//    }
 
-        if(pointNum == 3) {
-            if(isValid(s, startIndex, s.length())) {
-                ans.add(s);
-            }
+    public void backTracing(String s, int startIndex, int num) {
+
+        if(startIndex == s.length() && num == 4) {
+            ans.add(tempStr.toString());
             return;
         }
 
-        for(int i = startIndex; i < startIndex + 3 && i < s.length() - (3 - pointNum); i++) {
-            if(isValid(s, startIndex, i + 1)) {
-                s = s.substring(0, i + 1) + "." + s.substring(i + 1);
-                backTracing(s, i + 2, pointNum + 1);
-                s = s.substring(0, i + 1) + s.substring(i + 2);
-            } else {
-                break;
-            }
+        if(startIndex == s.length() || num == 4) {
+            return;
         }
 
+        for(int i = startIndex; i < s.length() && i < startIndex + 3 && Integer.parseInt(s.substring(startIndex, i + 1)) >= 0 && Integer.parseInt(s.substring(startIndex, i + 1)) <= 255; i++) {
+            if(i + 1 - startIndex > 1 && s.charAt(startIndex) - '0' == 0) continue;
+
+            tempStr.append(s.substring(startIndex, i + 1));
+            if(num < 3) tempStr.append(".");
+
+            backTracing(s, i + 1, num + 1);
+
+            tempStr.delete(startIndex + num, i + num + 2);
+
+        }
     }
 
     public boolean isValid(String s, int start, int end) {
