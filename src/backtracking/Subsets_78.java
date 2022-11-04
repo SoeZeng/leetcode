@@ -1,4 +1,4 @@
-package linked_list;
+package backtracking;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ class Solution78 {
     /**
      *
      * @param nums 元素互不相同的整数数组
-     * @return 所有子集的集合
+     * @return 所有不重复子集的集合
      */
     public List<List<Integer>> subsets(int[] nums) {
         backTracing(nums, 0);
