@@ -13,6 +13,15 @@ public class NQueen_51 {
 class Solution51 {
     List<List<String>> res = new ArrayList<>();
 
+    /**
+     *
+     * @param n 整数 n
+     * @return 所有不同的 n 皇后问题 的解决方案
+     *
+     * 不能同行
+     * 不能同列
+     * 不能同斜线
+     */
     public List<List<String>> solveNQueens(int n) {
         char[][] chessboard = new char[n][n];
         for (char[] c : chessboard) {
