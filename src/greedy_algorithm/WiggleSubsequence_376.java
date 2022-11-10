@@ -72,6 +72,36 @@ public class WiggleSubsequence_376 {
             return result;
         }
 
+        public int wiggleMaxLength3(int[] nums) {
+
+            if(nums.length < 2) return nums.length;
+
+            int ans = 1;
+            int difPre = 0;
+            int difPost = 0;
+
+            for(int i = 1; i < nums.length; i++) {
+                // 去重，处理最左边重复数字，否则difPre恒==0
+                if(nums[i] == nums[i - 1]) continue;
+
+                // 得到第一个非0差值
+                if(ans == 1) {
+                    ans++;
+                    difPre = nums[i] - nums[i - 1];
+                }
+                difPost = (nums[i] - nums[i - 1]);
+                if(difPre * difPost < 0) {
+                    ans++;
+                    difPre = difPost;
+                }
+
+
+            }
+
+            return ans;
+
+        }
+
         // DP
         public int wiggleMaxLength2(int[] nums) {
 
@@ -97,6 +127,8 @@ public class WiggleSubsequence_376 {
             }
             return Math.max(dp[nums.length-1][0],dp[nums.length-1][1]);
         }
+
+
 
     }
 
