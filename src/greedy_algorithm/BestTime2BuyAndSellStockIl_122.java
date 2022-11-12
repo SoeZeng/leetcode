@@ -1,8 +1,11 @@
 package greedy_algorithm;
 
+import java.util.Scanner;
+
 public class BestTime2BuyAndSellStockIl_122 {
 
     public static void main(String[] args) {
+
         Solution sol = new Solution();
         int[] prices = new int[]{7,1,5,3,6,4};
         int res = sol.maxProfit(prices);
@@ -16,8 +19,8 @@ public class BestTime2BuyAndSellStockIl_122 {
          * 在每一天，你可以决定是否购买和/或出售股票。你在任何时候最多只能持有 一股 股票。你也可以先购买，然后在 同一天 出售。
          *
          * 返回 你能获得的 最大 利润。
-         * @param prices
-         * @return
+         * @param prices 整数数组 prices
+         * @return 最大利润
          */
         public int maxProfit(int[] prices) {
 
@@ -50,9 +53,14 @@ public class BestTime2BuyAndSellStockIl_122 {
             // 局部最优：收集每天的正利润，全局最优：求得最大利润。
             int result = 0;
             for (int i = 1; i < prices.length; i++) {
+//                if(prices[i] > prices[i - 1]){
+//                    result += prices[i] - prices[i - 1];
+//                }
                 result += Math.max(prices[i] - prices[i - 1], 0);
             }
             return result;
+
+
         }
     }
 
