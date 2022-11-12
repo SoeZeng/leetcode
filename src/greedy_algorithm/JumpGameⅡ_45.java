@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class JumpGameⅡ_45 {
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        Solution45 sol = new Solution45();
         Scanner in = new Scanner(System.in);
 
         // 数组输入方式一
@@ -31,15 +31,16 @@ public class JumpGameⅡ_45 {
         }
 
     }
+}
 
-    static class Solution {
-        public int jump(int[] nums) {
+class Solution45 {
+    public int jump(int[] nums) {
 
-            if(nums.length == 1) return 0;
+        if(nums.length == 1) return 0;
 
-            int cur = 0; // 记录当前可达范围
-            int next = 0; // 记录下一跳可达范围
-            int ans = 0;
+        int cur = 0; // 记录当前可达范围
+        int next = 0; // 记录下一跳可达范围
+        int ans = 0;
 //            for(int i = 0; i < nums.length - 1; i++) {
 //                // 更新下一跳的最大可覆盖范围
 //                next = Math.max(nums[i] + i,next);
@@ -49,16 +50,15 @@ public class JumpGameⅡ_45 {
 //                    ans++;
 //                }
 //            }
-            for(int i = 0; i < nums.length && cur < nums.length - 1; i++) {
-                next = Math.max(next, i + nums[i]);
-                if(i == cur) {
-                    cur = next;
-                    ans++;
-                }
+        for(int i = 0; i < nums.length && cur < nums.length - 1; i++) {
+            next = Math.max(next, i + nums[i]);
+            if(i == cur) {
+                cur = next;
+                ans++;
             }
-
-            return ans;
-
         }
+
+        return ans;
+
     }
 }
