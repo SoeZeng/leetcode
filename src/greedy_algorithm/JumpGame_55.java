@@ -24,7 +24,21 @@ public class JumpGame_55 {
                 cover = Math.max(i+nums[i],cover);
                 if(cover >= nums.length - 1) return true;
             }
+
+//            int rangeCover = 0;
+//
+//            for(int i = 0; i < nums.length; i++) {
+//
+//                if(rangeCover >= nums.length - 1) return true;
+//
+//                if(i <= rangeCover) {
+//                    rangeCover = Math.max(rangeCover, i + nums[i]);
+//                }
+//            }
+//
+
             return false;
+
         }
 
         public boolean canJump1(int[] nums) {
