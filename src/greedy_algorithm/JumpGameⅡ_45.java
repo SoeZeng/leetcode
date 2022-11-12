@@ -40,10 +40,17 @@ public class JumpGameⅡ_45 {
             int cur = 0; // 记录当前可达范围
             int next = 0; // 记录下一跳可达范围
             int ans = 0;
-            for(int i = 0; i < nums.length - 1; i++) {
-                // 更新下一跳的最大可覆盖范围
-                next = Math.max(nums[i] + i,next);
-                // 当到达当前可达范围的最大下标时，跳跃次数+1
+//            for(int i = 0; i < nums.length - 1; i++) {
+//                // 更新下一跳的最大可覆盖范围
+//                next = Math.max(nums[i] + i,next);
+//                // 当到达当前可达范围的最大下标时，跳跃次数+1
+//                if(i == cur) {
+//                    cur = next;
+//                    ans++;
+//                }
+//            }
+            for(int i = 0; i < nums.length && cur < nums.length - 1; i++) {
+                next = Math.max(next, i + nums[i]);
                 if(i == cur) {
                     cur = next;
                     ans++;
