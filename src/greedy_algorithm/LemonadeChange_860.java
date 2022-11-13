@@ -53,7 +53,7 @@ class Solution860 {
                     five -= 3;
                 }
             }
-            if (five < 0 || ten < 0) return false;
+            if (five < 0) return false;
         }
 
         return true;
