@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class QueueReconstructionByHeight_406 {
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        Solution406 sol = new Solution406();
         Scanner in = new Scanner(System.in);
         while(in.hasNext()) {
             int len = Integer.parseInt(in.nextLine());
@@ -30,19 +30,23 @@ public class QueueReconstructionByHeight_406 {
             System.out.println();
         }
     }
-    static class Solution {
-        public int[][] reconstructQueue(int[][] people) {
-            Arrays.sort(people,(a, b) -> {
-                if(a[0] == b[0]) return a[1] - b[1];
-                return b[0] - a[0];
-            });
 
-            LinkedList<int[]> que = new LinkedList<>();
-            for(int[] p : people) {
-                que.add(p[1],p);
-            }
+}
 
-            return que.toArray(new int[people.length][]);
+class Solution406 {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people,(a, b) -> {
+            if(a[0] == b[0]) return a[1] - b[1];
+            return b[0] - a[0];
+        });
+
+        LinkedList<int[]> que = new LinkedList<>();
+        for(int[] p : people) {
+
+            // 插入下标为p[1]的位置，先插入的身高较高，后插入的操作对其无影响
+            que.add(p[1],p);
         }
+
+        return que.toArray(new int[people.length][]);
     }
 }
