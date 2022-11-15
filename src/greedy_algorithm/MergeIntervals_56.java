@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MergeIntervals_56 {
 
     public static void main(String[] args) {
-        Solution sol = new Solution();
+        Solution56 sol = new Solution56();
         Scanner in = new Scanner(System.in);
         while(in.hasNext()) {
             int len = Integer.parseInt(in.nextLine());
@@ -34,31 +34,46 @@ public class MergeIntervals_56 {
         }
     }
 
-    static class Solution {
-        /**
-         * 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
-         * 请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
-         *
-         * @param intervals
-         * @return
-         */
-        public int[][] merge(int[][] intervals) {
-            Arrays.sort(intervals,(a, b) -> {
-                return a[0] - b[0];
-            });
-            List<int[]> list = new ArrayList<>();
-            list.add(intervals[0]);
-            for(int i = 1; i < intervals.length; i++) {
-                int[] temp = list.get(list.size() - 1);
-                if(intervals[i][0] <= temp[1]) {
-                    // list.remove(list.size() - 1);
-                    temp[1] = Math.max(temp[1],intervals[i][1]);
-                    // list.add(intervals[i]);
-                } else {
-                    list.add(intervals[i]);
-                }
+}
+
+class Solution56 {
+    /**
+     * 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。
+     * 请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。
+     *
+     * @param intervals
+     * @return
+     */
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals,(a, b) -> {
+            return a[0] - b[0];
+        });
+//        List<int[]> list = new ArrayList<>();
+//        list.add(intervals[0]);
+//        for(int i = 1; i < intervals.length; i++) {
+//            int[] temp = list.get(list.size() - 1);
+//            if(intervals[i][0] <= temp[1]) {
+//                // list.remove(list.size() - 1);
+//                temp[1] = Math.max(temp[1],intervals[i][1]);
+//                // list.add(intervals[i]);
+//            } else {
+//                list.add(intervals[i]);
+//            }
+//        }
+//        return list.toArray(new int[list.size()][]);
+
+        List<int[]> list = new ArrayList<>();
+
+        for(int i = 1; i <= intervals.length; i++) {
+            if(i == intervals.length || intervals[i][0] > intervals[i - 1][1]) {
+                list.add(intervals[i - 1]);
+            } else{
+                intervals[i][0] = intervals[i - 1][0];
+                intervals[i][1] = Math.max(intervals[i - 1][1], intervals[i][1]);
+
             }
-            return list.toArray(new int[list.size()][]);
         }
+
+        return list.toArray(new int[list.size()][]);
     }
 }
