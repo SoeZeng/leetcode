@@ -68,6 +68,8 @@ public class BinaryTreeCameras_968 {
             if(traverse(root) == 0) ans++; // 头节点无覆盖
             return ans;
         }
+
+        // 后序遍历：头结点放不放摄像头也就省下一个摄像头，叶子节点放不放摄像头省下了的摄像头数量是指数阶别的，故从下往上遍历
         public int traverse(TreeNode root) {
             // 0：该节点无覆盖
             // 1：该节点有摄像头
