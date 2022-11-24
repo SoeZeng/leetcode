@@ -36,11 +36,11 @@ public class WordBreak_139 {
             /**
              * 方法一：回溯
              */
-            boolean[] memory = new boolean[s.length()];
-            for (int i = 0; i < memory.length; i++) {
-                memory[i] = true;
-            }
-            return backTracing(s, wordDict, memory, 0);
+//            boolean[] memory = new boolean[s.length()];
+//            for (int i = 0; i < memory.length; i++) {
+//                memory[i] = true;
+//            }
+//            return backTracing(s, wordDict, memory, 0);
 
 
             /**
@@ -63,6 +63,19 @@ public class WordBreak_139 {
 //                }
 //            }
 //            return dp[s.length()] == 1 ? true : false;
+
+            boolean[] dp = new boolean[s.length() + 1];
+
+            dp[0] = true;
+            for(int i = 1; i <= s.length(); i++) {
+                for(int j = 0; j < i && !dp[i]; j++) {
+                    if(dp[j] && wordDict.contains(s.substring(j, i))) {
+                        dp[i] = true;
+                    }
+                }
+            }
+
+            return dp[s.length()];
         }
 
         public boolean backTracing(String s, List<String> wordDict, boolean[] memory, int startIndex) {
@@ -82,5 +95,30 @@ public class WordBreak_139 {
 
             return false;
         }
+
+        // 回溯 -> 超时
+//        StringBuilder str = new StringBuilder();
+//        public boolean wordBreak(String s, List<String> wordDict) {
+//            return backTracking(s, wordDict, 0);
+//        }
+//
+//        public boolean backTracking(String s, List<String> wordDict, int startIndex) {
+//            if(startIndex == s.length()) {
+//                if(s.equals(str.toString())) {
+//                    return true;
+//                }
+//                return false;
+//            }
+//
+//            for(int i = 0; i < wordDict.size(); i++) {
+//                if(wordDict.get(i).length() + str.length() <= s.length()) {
+//                    str.append(wordDict.get(i));
+//                    if(backTracking(s, wordDict, startIndex + wordDict.get(i).length())) return true;
+//                    str.delete(startIndex, str.length());
+//                }
+//            }
+//
+//            return false;
+//        }
     }
 }
