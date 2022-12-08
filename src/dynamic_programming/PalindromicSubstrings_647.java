@@ -65,4 +65,26 @@ class Solution647 {
             right++;
         }
     }
+
+//    public int countSubstrings(String s) {
+//        int res = 0;
+//
+//        for(int i = 0; i < s.length(); i++) {
+//            for(int j = 0; j <= i; j++) {
+//                if(isPalindrome(s.substring(j, i + 1))) {
+//                    res++;
+//                }
+//            }
+//        }
+//
+//        return res;
+//
+//    }
+//
+//    public boolean isPalindrome(String s) {
+//        for(int i = 0, j = s.length() - 1; i < j; i++, j--) {
+//            if(s.charAt(i) != s.charAt(j)) return false;
+//        }
+//        return true;
+//    }
 }
