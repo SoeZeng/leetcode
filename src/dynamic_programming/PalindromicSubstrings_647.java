@@ -65,12 +65,21 @@ class Solution647 {
 
         // 中心扩散法
         int n = s.length();
-        char[] chars = s.toCharArray();
+//        char[] chars = s.toCharArray();
+//
+//
+//        for(int i = 0; i < n; i++) {
+//            count(chars, i, i); // 回文串长度为奇数
+//            count(chars, i, i + 1); // 回文串长度为偶数
+//        }
 
-
-        for(int i = 0; i < n; i++) {
-            count(chars, i, i); // 回文串长度为奇数
-            count(chars, i, i + 1); // 回文串长度为偶数
+        for(int i = 0; i < 2 * s.length() - 1; i++) {
+            int left = i / 2, right = i % 2 + left;
+            while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                res++;
+                left--;
+                right++;
+            }
         }
 
         return res;
