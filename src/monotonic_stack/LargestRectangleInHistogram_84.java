@@ -93,7 +93,7 @@ class Solution84 {
         stack.push(0);
 
         for(int i = 1; i < newHeights.length; i++) {
-            while(!stack.isEmpty() && newHeights[i] < newHeights[stack.peek()]) {
+            while(newHeights[i] < newHeights[stack.peek()]) {
                 int mid = stack.peek();
                 stack.pop();
                 if(!stack.isEmpty()) {
