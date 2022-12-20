@@ -1,5 +1,8 @@
 package extra;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class NumbersSmallerThanTheCurrentNumber_1365 {
@@ -47,21 +50,40 @@ class Solution1365 {
          * 累加处理桶数组arr ， 使得 arr[i] 表示比 i 小的数字的个数
          * 最后遍历 nums ，取出对应桶里的结果即可。
          */
-        int[] arr = new int[101];
+//        int[] arr = new int[101];
+//
+//        for(int num : nums) {
+//            arr[num]++;
+//        }
+//
+//        int cnt = 0;
+//        for(int i = 0; i <= 100; i++) {
+//            int temp = arr[i];
+//            arr[i] = cnt;
+//            cnt += temp;
+//        }
+//
+//        for(int i = 0; i < nums.length; i++) {
+//            ans[i] = arr[nums[i]];
+//        }
+//
+//        return ans;
 
-        for(int num : nums) {
-            arr[num]++;
-        }
+        /**
+         * 排序 +　哈希
+         */
+        ans = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(ans);
+        Map<Integer, Integer> map = new HashMap<>();
 
-        int cnt = 0;
-        for(int i = 0; i <= 100; i++) {
-            int temp = arr[i];
-            arr[i] = cnt;
-            cnt += temp;
+        for(int i = 0; i < ans.length; i++) {
+            if(!map.containsKey(ans[i])) {
+                map.put(ans[i], i);
+            }
         }
 
         for(int i = 0; i < nums.length; i++) {
-            ans[i] = arr[nums[i]];
+            ans[i] = map.get(nums[i]);
         }
 
         return ans;
