@@ -1,9 +1,6 @@
-package extra;
+package extra.array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UniqueNumberOfOccurrences_1207 {
 
@@ -60,6 +57,15 @@ public class UniqueNumberOfOccurrences_1207 {
                     }
                 }
             }
+//            for(int i = 0; i < counts.length; i++) {
+//                if(counts[i] == 0) continue;
+//
+//                if(flags[counts[i]]) return false;
+//
+//                flags[counts[i]] = true;
+//            }
+
+
 
             return true;
         }
