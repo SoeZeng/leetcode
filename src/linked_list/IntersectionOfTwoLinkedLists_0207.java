@@ -31,30 +31,30 @@ public class IntersectionOfTwoLinkedLists_0207 {
             /**
              * 先求长度差，再比较
              */
-            int lenA = 0;
-            int lenB = 0;
-            while(nodeA != null) {
-                lenA++;
-                nodeA = nodeA.next;
-            }
-            while(nodeB != null) {
-                lenB++;
-                nodeB = nodeB.next;
-            }
-            if(lenA > lenB) return getIntersectionNode(headB, headA);
-
-            nodeA = headA;
-            nodeB = headB;
-
-            while(lenA < lenB) {
-                nodeB = nodeB.next;
-                lenB--;
-            }
-
-            while(nodeA != nodeB) {
-                nodeA = nodeA.next;
-                nodeB = nodeB.next;
-            }
+//            int lenA = 0;
+//            int lenB = 0;
+//            while(nodeA != null) {
+//                lenA++;
+//                nodeA = nodeA.next;
+//            }
+//            while(nodeB != null) {
+//                lenB++;
+//                nodeB = nodeB.next;
+//            }
+//            if(lenA > lenB) return getIntersectionNode(headB, headA);
+//
+//            nodeA = headA;
+//            nodeB = headB;
+//
+//            while(lenA < lenB) {
+//                nodeB = nodeB.next;
+//                lenB--;
+//            }
+//
+//            while(nodeA != nodeB) {
+//                nodeA = nodeA.next;
+//                nodeB = nodeB.next;
+//            }
 
             return nodeA;
         }
