@@ -1,4 +1,4 @@
-package extra;
+package extra.dynamicProgramming;
 
 public class LongestPalindromicSubstring_5 {
 
@@ -58,16 +58,16 @@ public class LongestPalindromicSubstring_5 {
 
         }
 
-        public void count(String s, int i, int j, int n) {
-            while(i >= 0 && j < n && s.charAt(i) == s.charAt(j)) {
-                i--;
-                j++;
-            }
-
-            if(j - i - 2> right - left) {
-                right = j - 1;
-                left = i + 1;
-            }
-        }
+//        public void count(String s, int i, int j, int n) {
+//            while(i >= 0 && j < n && s.charAt(i) == s.charAt(j)) {
+//                i--;
+//                j++;
+//            }
+//
+//            if(j - i - 2 > right - left) {
+//                right = j - 1;
+//                left = i + 1;
+//            }
+//        }
     }
 }
