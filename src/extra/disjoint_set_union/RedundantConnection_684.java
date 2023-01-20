@@ -1,4 +1,4 @@
-package extra;
+package extra.disjoint_set_union;
 
 import java.util.Scanner;
 
