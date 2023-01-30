@@ -89,6 +89,40 @@ class Solution127 {
 //                }
 //            }
 
+
+        // 广搜，不借助map记录单词对应路径对应长度
+//        if(!wordList.contains(endWord)) return 0;
+//
+//        boolean[] visited = new boolean[wordList.size()];
+//        Queue<String> que = new LinkedList<>();
+//        que.offer(beginWord);
+//        int cnt = 1;
+//
+//        while(!que.isEmpty()) {
+//            cnt++;
+//            int len = que.size();
+//
+//            while(len > 0) {
+//                String str = que.poll();
+//
+//                for(int i = 0; i < wordList.size(); i++) {
+//                    if(!visited[i]) {
+//                        String word = wordList.get(i);
+//                        int diff = 0;
+//                        for(int j = 0; j < word.length(); j++) {
+//                            if(str.charAt(j) != word.charAt(j)) diff++;
+//                        }
+//                        if(diff == 1) {
+//                            if(word.equals(endWord)) return cnt;
+//                            que.offer(word);
+//                            visited[i] = true;
+//                        }
+//                    }
+//                }
+//                len--;
+//            }
+//        }
+
         return 0;
 
     }
