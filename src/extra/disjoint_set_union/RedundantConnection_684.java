@@ -8,7 +8,7 @@ public class RedundantConnection_684 {
 
         Scanner in = new Scanner(System.in);
         while(in.hasNext()) {
-            Solution sol = new Solution();
+            Solution684 sol = new Solution684();
             String s = in.nextLine();
             String[] arr = s.split(",");
             int[][] edges = new int[arr.length/2][2];
@@ -24,7 +24,7 @@ public class RedundantConnection_684 {
     }
 }
 
-class Solution {
+class Solution684 {
     int n = 1001;
     int[] father = new int[n];
 
@@ -62,8 +62,10 @@ class Solution {
 
     // 并查集寻根
     public int find(int u) {
-        if(father[u] == u) return u;
-        return find(father[u]);
+//        if(father[u] == u) return u;
+//        return find(father[u]);
+
+        return (u == father[u]) ? u : (father[u] = find(father[u]));
     }
 
     // 将边加入并查集
