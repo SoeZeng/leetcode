@@ -1,4 +1,4 @@
-package extra.binaryTree;
+package extra.binary_tree;
 
 public class TreeNode {
     int val;

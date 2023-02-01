@@ -1,7 +1,4 @@
-package extra.binaryTree;
-
-import java.util.LinkedList;
-import java.util.Queue;
+package extra.binary_tree;
 
 public class SameTree_100 {
 

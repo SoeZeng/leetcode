@@ -1,4 +1,4 @@
-package extra.dynamicProgramming;
+package extra.dynamic_programming;
 
 public class LongestPalindromicSubstring_5 {
 

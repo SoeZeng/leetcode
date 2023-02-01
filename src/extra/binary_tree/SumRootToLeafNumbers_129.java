@@ -1,4 +1,4 @@
-package extra.binaryTree;
+package extra.binary_tree;
 
 import java.util.LinkedList;
 import java.util.List;
