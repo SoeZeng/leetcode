@@ -21,6 +21,7 @@ public class NextPermutation_31 {
                 System.out.print(nums[i] + ",");
             }
             System.out.println(nums[nums.length - 1] + "]");
+
         }
     }
 
