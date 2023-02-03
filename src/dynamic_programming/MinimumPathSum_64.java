@@ -1,11 +1,19 @@
 package dynamic_programming;
 
-public class MinimunPathSum_64 {
+public class MinimumPathSum_64 {
 
 }
 
 
 class Solution64 {
+
+    /**
+     * 给定一个包含非负整数的 m x n 网格 grid ，
+     * 请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+     *
+     * @param grid
+     * @return
+     */
     public int minPathSum(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
