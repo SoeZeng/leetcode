@@ -1,7 +1,9 @@
 package array;
 
 public class RotateImage_48 {
+    public static void main(String[] args) {
 
+    }
 }
 
 class Solution48 {
