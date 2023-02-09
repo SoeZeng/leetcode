@@ -1,8 +1,6 @@
 package hash_table;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class LRUCache_146 {
     public static void main(String[] args) {
@@ -25,35 +23,65 @@ public class LRUCache_146 {
  */
 class LRUCache {
 
-    List<Integer> keyCache;
-    int[] dict = new int[10001];
-    int capacity = 0;
+//    List<Integer> keyCache;
+//    int[] dict = new int[10001];
+//    int capacity = 0;
+//
+//    public LRUCache(int capacity) {
+//        Arrays.fill(dict, -1);
+//        keyCache = new LinkedList<>();
+//        this.capacity = capacity;
+//    }
+//
+//    public int get(int key) {
+//        if(dict[key] != -1) {
+//            keyCache.remove(keyCache.indexOf(key));
+//            keyCache.add(key);
+//        }
+//        return dict[key];
+//    }
+//
+//    public void put(int key, int value) {
+//        if(dict[key] != -1) {
+//            keyCache.remove(keyCache.indexOf(key));
+//        } else if(keyCache.size() == this.capacity) {
+//            System.out.println(keyCache.get(0) + ", " +key);
+//            dict[keyCache.get(0)] = -1;
+//            keyCache.remove(0);
+//        }
+//
+//        keyCache.add(key);
+//        dict[key] = value;
+//    }
 
+
+    int capacity = 0;
+    Map<Integer, Integer> map = new LinkedHashMap<>();
     public LRUCache(int capacity) {
-        Arrays.fill(dict, -1);
-        keyCache = new LinkedList<>();
         this.capacity = capacity;
     }
 
     public int get(int key) {
-        if(dict[key] != -1) {
-            keyCache.remove(keyCache.indexOf(key));
-            keyCache.add(key);
+        if(map.containsKey(key)) {
+            int value = map.get(key);
+            map.remove(key);
+            map.put(key, value);
+            return value;
         }
-        return dict[key];
+
+        return -1;
     }
 
     public void put(int key, int value) {
-        if(dict[key] != -1) {
-            keyCache.remove(keyCache.indexOf(key));
-        } else if(keyCache.size() == this.capacity) {
-            System.out.println(keyCache.get(0) + ", " +key);
-            dict[keyCache.get(0)] = -1;
-            keyCache.remove(0);
+        if(map.containsKey(key)) {
+            map.remove(key);
+        } else if(map.size() == this.capacity) {
+            Iterator<Map.Entry<Integer, Integer>> iterator = map.entrySet().iterator();
+            iterator.next();
+            iterator.remove(); // remove()方法删除最近一次调用的元素
         }
 
-        keyCache.add(key);
-        dict[key] = value;
+        map.put(key, value);
     }
 }
 
