@@ -61,6 +61,21 @@ class Solution215 {
         // Quick Sort
         // quickSort(nums, 0, n - 1);
 
+        // Heap Sort 构建大顶堆或小顶堆，将堆顶元素与堆尾元素交换后再调整
+
+        // 构建大顶堆，从最后一个非叶子节点开始，从下至上，从右至左
+//        for(int i = nums.length / 2 - 1; i >= 0; i--) {
+//            adjustHeap(nums, i, nums.length);
+//        }
+//
+//        // 排序 交换+调整
+//        for(int i = nums.length - 1; i >= nums.length - k; i--) {
+//            int temp = nums[0];
+//            nums[0] = nums[i];
+//            nums[i] = temp;
+//            adjustHeap(nums, 0, i);
+//        }
+
         Arrays.sort(nums);
 
         return nums[n - k];
@@ -85,5 +100,22 @@ class Solution215 {
         quickSort(nums, start, left - 1);
         quickSort(nums, left + 1, end);
 
+    }
+
+
+    public void adjustHeap(int[] nums, int pos, int n) {
+        int temp = nums[pos];
+        for(int i = 2 * pos + 1; i < n; i = 2 * i + 1) {
+            if(i + 1 < n && nums[i + 1] > nums[i]) {
+                i++;
+            }
+            if(nums[i] > temp) {
+                nums[pos] = nums[i];
+                pos = i;
+            } else {
+                break;
+            }
+        }
+        nums[pos] = temp;
     }
 }
