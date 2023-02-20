@@ -76,7 +76,33 @@ class Solution215 {
 //            adjustHeap(nums, 0, i);
 //        }
 
-        Arrays.sort(nums);
+
+        // Radix Sort 按位数进行排序，借助桶bucket进行分配与收集
+        int max = 0;
+        for(int num : nums) {
+            max = Math.max(num, max);
+        }
+
+        int bitCount = (max + "").length();
+        for(int i = 1; i <= bitCount; i++) {
+            // 分配
+            int[][] bucket = new int[10][n];
+            int[] bucketCount = new int[10]; //用于统计该童中元素的数量
+            for(int num : nums) {
+                bucket[num % (10 * i)][bucketCount[num % (10 * i)]++] = num;
+            }
+
+            // 收集
+            int t = 0;
+            for(int j = 0; j < 10; j++) {
+                while(bucketCount[j] != 0) {
+                    nums[t++] = bucket[j][--bucketCount[j]];
+                }
+            }
+        }
+
+
+//        Arrays.sort(nums);
 
         return nums[n - k];
 
