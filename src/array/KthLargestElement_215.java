@@ -77,20 +77,23 @@ class Solution215 {
 //        }
 
 
-        // Radix Sort 按位数进行排序，借助桶bucket进行分配与收集
+        // Radix Sort 按位数进行排序，借助桶bucket进行分配与收集：没有考虑到负数
         int max = 0;
         for(int num : nums) {
             max = Math.max(num, max);
         }
 
         int bitCount = (max + "").length();
-        for(int i = 1; i <= bitCount; i++) {
+        int pow = 1;
+        for(int i = 0; i < bitCount; i++) {
             // 分配
             int[][] bucket = new int[10][n];
-            int[] bucketCount = new int[10]; //用于统计该童中元素的数量
+            int[] bucketCount = new int[10]; //用于统计该桶中元素的数量
             for(int num : nums) {
-                bucket[num % (10 * i)][bucketCount[num % (10 * i)]++] = num;
+                int idx = (num / pow) % 10;
+                bucket[idx][bucketCount[idx]++] = num;
             }
+            pow *= 10;
 
             // 收集
             int t = 0;
@@ -99,6 +102,7 @@ class Solution215 {
                     nums[t++] = bucket[j][--bucketCount[j]];
                 }
             }
+
         }
 
 
