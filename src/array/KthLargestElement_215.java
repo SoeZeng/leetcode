@@ -78,32 +78,36 @@ class Solution215 {
 
 
         // Radix Sort 按位数进行排序，借助桶bucket进行分配与收集：没有考虑到负数
-        int max = 0;
-        for(int num : nums) {
-            max = Math.max(num, max);
-        }
+//        int max = 0;
+//        for(int num : nums) {
+//            max = Math.max(num, max);
+//        }
+//
+//        int bitCount = (max + "").length();
+//        int pow = 1;
+//        for(int i = 0; i < bitCount; i++) {
+//            // 分配
+//            int[][] bucket = new int[10][n];
+//            int[] bucketCount = new int[10]; //用于统计该桶中元素的数量
+//            for(int num : nums) {
+//                int idx = (num / pow) % 10;
+//                bucket[idx][bucketCount[idx]++] = num;
+//            }
+//            pow *= 10;
+//
+//            // 收集
+//            int t = 0;
+//            for(int j = 0; j < 10; j++) {
+//                while(bucketCount[j] != 0) {
+//                    nums[t++] = bucket[j][--bucketCount[j]];
+//                }
+//            }
+//
+//        }
 
-        int bitCount = (max + "").length();
-        int pow = 1;
-        for(int i = 0; i < bitCount; i++) {
-            // 分配
-            int[][] bucket = new int[10][n];
-            int[] bucketCount = new int[10]; //用于统计该桶中元素的数量
-            for(int num : nums) {
-                int idx = (num / pow) % 10;
-                bucket[idx][bucketCount[idx]++] = num;
-            }
-            pow *= 10;
 
-            // 收集
-            int t = 0;
-            for(int j = 0; j < 10; j++) {
-                while(bucketCount[j] != 0) {
-                    nums[t++] = bucket[j][--bucketCount[j]];
-                }
-            }
-
-        }
+        // merge sort
+        mergeSort(nums, 0, n - 1);
 
 
 //        Arrays.sort(nums);
@@ -147,5 +151,38 @@ class Solution215 {
             }
         }
         nums[pos] = temp;
+    }
+
+    public void mergeSort(int[] nums, int left, int right) {
+        if(left >= right) return;
+
+        int mid = (right - left) / 2 + left;
+        mergeSort(nums, left, mid);
+        mergeSort(nums, mid + 1, right);
+
+        merge(nums, left, mid, right);
+    }
+
+    public void merge(int[] nums, int left, int mid, int right) {
+        int i = left;
+        int j = mid + 1;
+        int temp[] = new int[right - left + 1];
+        int t = 0;
+
+        while(i <= mid && j <= right) {
+            if(nums[i] <= nums[j]) {
+                temp[t++] = nums[i++];
+            } else {
+                temp[t++] = nums[j++];
+            }
+        }
+
+        while(i <= mid) temp[t++] = nums[i++];
+        while(j <= right) temp[t++] = nums[j++];
+
+        t = 0;
+        while(left <= right) {
+            nums[left++] = temp[t++];
+        }
     }
 }
