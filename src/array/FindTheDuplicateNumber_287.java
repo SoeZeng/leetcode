@@ -1,13 +1,27 @@
 package array;
 
+import java.util.Scanner;
+
 public class FindTheDuplicateNumber_287 {
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+            String[] strs = in.nextLine().split(" ");
+            int[] nums = new int[strs.length];
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = Integer.parseInt(strs[i]);
+            }
+            Solution287 sol = new Solution287();
+            int duplicate = sol.findDuplicate(nums);
+            System.out.println(duplicate);
+        }
+
 
     }
 }
 
-class Solution {
+class Solution287 {
 
     /**
      *
