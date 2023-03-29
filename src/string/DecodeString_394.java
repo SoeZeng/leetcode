@@ -13,34 +13,36 @@ public class DecodeString_394 {
 class Solution {
     public String decodeString(String s) {
 
-        Deque<Integer> stack_digit = new ArrayDeque<>();
-        Deque<StringBuilder> stack_string = new ArrayDeque<>();
-        int tNum = 0;
-        StringBuilder tString = new StringBuilder();
-        int i = 0;
-        //遍历字符串 分4中情况
-        while(i<s.length()){
-            char ch = s.charAt(i++);
-            if(ch == '['){ //如果是"[" 将临时数字和临时字符串入栈
-                stack_digit.push(tNum);
-                stack_string.push(tString);
-                tNum = 0;
-                tString = new StringBuilder();
-            }else if(ch == ']'){ //如果是"]" 将数字和字符串出栈 此时临时字符串res = 出栈字符串 + 出栈数字*res
-                StringBuilder temp = stack_string.pop();
-                int count = stack_digit.pop();
-                for(int j = 0;j < count;j++){
-                    temp.append(tString.toString());
+        Stack<Integer> nums = new Stack<>();
+        Stack<String> strs = new Stack<>();
+
+        int tempNum = 0;
+        StringBuilder tempStr = new StringBuilder();
+
+        // '['：数字和临时字符串都入栈
+        // ']'：若数字栈非空，栈顶元素出栈，循环拼接当前临时字符串；若字符串栈非空，栈顶元素出栈与当前临时字符串拼接
+        for(char c : s.toCharArray()) {
+            if(c >= '0' && c <= '9') {
+                tempNum = tempNum * 10 + (c - '0');
+            } else if(c >= 'a' && c <= 'z') {
+                tempStr.append(c);
+            } else if(c == '[') {
+                strs.push(tempStr.toString());
+                tempStr = new StringBuilder();
+                nums.push(tempNum);
+                tempNum = 0;
+            } else {
+                int n = !nums.empty() ? nums.pop() : 1;
+                String str = tempStr.toString();
+                for(int i = 1; i < n; i++) {
+                    tempStr.append(str);
                 }
-                tString = temp;
-            }else if('0' <= ch && ch <= '9'){
-                //如果是数字 将字符转成整型数字 ch-‘0’。 注意数字不一定是个位 比如100[a] 所以digit要*10
-                tNum = tNum * 10 + ch - '0';
-            }else{
-                //如果是字符 直接将字符放在临时字符串中
-                tString.append(ch);
+                str = tempStr.toString();
+                if(!strs.empty()) tempStr = new StringBuilder(strs.pop());
+                tempStr.append(str);
             }
         }
-        return tString.toString();
+
+        return tempStr.toString();
     }
 }
