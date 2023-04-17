@@ -22,11 +22,12 @@ class Solution {
 
 //        return true;
 
+
         if(x < 0) return false;
 
         int y = 0;
-        int rem = 0;
-        int quo = x;
+        int rem = 0; // 余数
+        int quo = x; // 商
         while(quo != 0) {
             rem = quo % 10;
             y = y * 10 + rem;
