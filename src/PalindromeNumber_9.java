@@ -4,7 +4,7 @@ public class PalindromeNumber_9 {
     }
 }
 
-class Solution {
+class Solution9 {
     /**
      *
      * @param x 整数 x
