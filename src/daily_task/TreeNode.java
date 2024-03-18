@@ -1,3 +1,5 @@
+package daily_task;
+
 public class TreeNode {
     int val;
     TreeNode left;

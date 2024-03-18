@@ -1,3 +1,5 @@
+package daily_task;
+
 import java.util.HashSet;
 import java.util.Set;
 
