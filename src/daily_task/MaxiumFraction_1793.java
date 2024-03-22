@@ -48,11 +48,35 @@ class Solution1793{
         }
          **/
 
-        /* ******** 单调栈，和84.柱状图中最大的矩形面积类似，比栈顶元素小则索引入栈，比栈顶元素大 ********
+        /* ******** 单调栈，和84.柱状图中最大的矩形面积类似 ********
          * 时间复杂度：O(n)
          * 空间复杂度：O(n)
          */
+        n = n + 2;
+        k = k + 1;
+        int[] newNums = new int[n]; //数组扩容
+        newNums[0] = 0;
+        newNums[n - 1] = 0;
+        for (int i = 1; i < n - 1; i++) {
+            newNums[i] = nums[i - 1];
+        }
+
         Stack<Integer> stack = new Stack<>();
+        stack.push(0);
+
+        for(int right = 1; right < n; right++) {
+            // 在[left + 1, right - 1]区间，newNums[temp]为最小值
+            // newNums[0] = 0，所以栈永不为空
+            while(newNums[right] < newNums[stack.peek()]) {
+                int temp = stack.peek();
+                stack.pop();
+                int left = stack.peek();
+                if(right > k && left < k) {
+                    res = Math.max(res, newNums[temp] * (right - left - 1));
+                }
+            }
+            stack.push(right);
+        }
 
 
         return res;
