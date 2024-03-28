@@ -53,11 +53,23 @@ class Graph {
     }
 
     private void Floyd() {
-        for(int i = 0; i < this.n; i++) {
+        /*for(int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.n; j++) {
-                if(i == j) continue;
                 for (int k = 0; k < this.n; k++) {
-                    if(i == k || j == k || this.edges[i][k] == -1 || this.edges[k][j] == -1) continue;
+                    if(this.edges[i][k] == -1 || this.edges[k][j] == -1) continue;
+                    int cost = this.edges[i][k] + this.edges[k][j];
+                    if(this.edges[i][j] == -1 || this.edges[i][j] > cost) {
+                        this.edges[i][j] = cost;
+                    }
+                }
+            }
+        }*/
+
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                if(edges[i][k] == -1) continue;
+                for (int j = 0; j < n; j++) {
+                    if(edges[k][j] == -1) continue;
                     int cost = this.edges[i][k] + this.edges[k][j];
                     if(this.edges[i][j] == -1 || this.edges[i][j] > cost) {
                         this.edges[i][j] = cost;
