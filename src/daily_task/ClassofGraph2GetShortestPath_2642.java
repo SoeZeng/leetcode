@@ -1,5 +1,7 @@
 package daily_task;
 
+import java.util.Arrays;
+
 /*
 给你一个有 n 个节点的 有向带权 图，节点编号为 0 到 n - 1 。图中的初始边用数组 edges 表示，其中 edges[i] = [fromi, toi, edgeCosti] 表示从 fromi 到 toi 有一条代价为 edgeCosti 的边。
 
@@ -21,37 +23,45 @@ public class ClassofGraph2GetShortestPath_2642 {
  */
 class Graph {
     int n;
-    int[][] edges;
+    int[][] weights;
+    private static final int INF = Integer.MAX_VALUE / 3; // 防止更新最短路径时加法溢出
 
 
     public Graph(int n, int[][] edges) {
         this.n = n;
-        this.edges = new int[n][n];
+        this.weights = new int[n][n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                this.edges[i][j] = i == j ? 0 : -1;
-            }
+            Arrays.fill(weights[i], INF);
+            weights[i][i] = 0;
         }
 
-        for (int i = 0; i < edges.length; i++) {
-            this.edges[edges[i][0]][edges[i][1]] = edges[i][2];
+        for (int[] edge : edges) {
+            this.weights[edge[0]][edge[1]] = edge[2];
         }
 
         Floyd();
     }
 
     public void addEdge(int[] edge) {
-        /*int from = edge[0];
+        int from = edge[0];
         int to = edge[1];
-        int cost = edge[2];*/
-        this.edges[edge[0]][edge[1]] = edge[2];
-        Floyd();
+        int cost = edge[2];
+        if(cost > weights[from][to]) return;
+        weights[edge[0]][edge[1]] = edge[2];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                weights[i][j] = Math.min(weights[i][j], weights[i][from] + cost + weights[to][j]);
+            }
+        }
     }
 
     public int shortestPath(int node1, int node2) {
-        return this.edges[node1][node2];
+
+        return weights[node1][node2] == INF ? -1 : weights[node1][node2];
+
     }
 
+    // the k must be the outermost --> dp[k][i][j] = Math.min(dp[k][i][j], dp[k-1][i][k] + dp[k-1][k][j])
     private void Floyd() {
         /*for(int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.n; j++) {
@@ -67,13 +77,9 @@ class Graph {
 
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < n; i++) {
-                if(edges[i][k] == -1) continue;
+                if(weights[i][k] == INF) continue;
                 for (int j = 0; j < n; j++) {
-                    if(edges[k][j] == -1) continue;
-                    int cost = this.edges[i][k] + this.edges[k][j];
-                    if(this.edges[i][j] == -1 || this.edges[i][j] > cost) {
-                        this.edges[i][j] = cost;
-                    }
+                    weights[i][j] = Math.min(weights[i][j], weights[i][k] + weights[k][j]);
                 }
             }
         }
