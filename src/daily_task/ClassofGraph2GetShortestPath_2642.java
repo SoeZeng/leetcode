@@ -39,25 +39,32 @@ class Graph {
             this.weights[edge[0]][edge[1]] = edge[2];
         }
 
-        Floyd();
+        // Floyd();
     }
 
     public void addEdge(int[] edge) {
-        int from = edge[0];
+
+        /** Floyd **/
+        /*int from = edge[0];
         int to = edge[1];
         int cost = edge[2];
         if(cost > weights[from][to]) return;
-        weights[edge[0]][edge[1]] = edge[2];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 weights[i][j] = Math.min(weights[i][j], weights[i][from] + cost + weights[to][j]);
             }
-        }
+        }*/
+
+        /** Dijkstra **/
+        weights[edge[0]][edge[1]] = edge[2];
     }
 
     public int shortestPath(int node1, int node2) {
 
-        return weights[node1][node2] == INF ? -1 : weights[node1][node2];
+        // return weights[node1][node2] == INF ? -1 : weights[node1][node2];
+
+        /** Dijkstra **/
+        return Dijkstra(node1, node2);
 
     }
 
@@ -83,5 +90,30 @@ class Graph {
                 }
             }
         }
+    }
+
+    // 贪心，找最短路径，广度优先搜索刷新最短距离
+    private int Dijkstra(int start, int end) {
+        int[] dis = new int[n]; // 从 start 出发，到各个点的最短路径长度，如果不存在则为无穷大
+        Arrays.fill(dis, INF);
+        dis[start] = 0;
+        boolean[] visited = new boolean[n];
+        while(true) {
+            int x = -1; // 指向当前最短路径的终点
+            for (int i = 0; i < n; i++) {
+                if(!visited[i] && (x < 0 || dis[i] < dis[x])) x = i;
+            }
+
+            if(x < 0 || dis[x] == INF) return -1;  // 所有从 start 能到达的点都被更新了
+
+            if(x == end) return dis[x];
+
+            visited[x] = true;  // 标记，在后续的循环中无需反复更新 x 到其余点的最短路长度
+            // 更新最短路径长度
+            for (int y = 0; y < n; y++) {
+                dis[y] = Math.min(dis[y], dis[x] + weights[x][y]);
+            }
+        }
+
     }
 }
