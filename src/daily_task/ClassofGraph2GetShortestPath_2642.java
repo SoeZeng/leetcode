@@ -1,6 +1,9 @@
 package daily_task;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
 
 /*
 给你一个有 n 个节点的 有向带权 图，节点编号为 0 到 n - 1 。图中的初始边用数组 edges 表示，其中 edges[i] = [fromi, toi, edgeCosti] 表示从 fromi 到 toi 有一条代价为 edgeCosti 的边。
@@ -116,4 +119,53 @@ class Graph {
         }
 
     }
+}
+
+// 邻接表+堆优化Dijsktra
+class Graph1 {
+    private final List<int[]>[] g;
+    private final int n;
+    public Graph1(int n, int[][] edges){
+        this.n = n;
+        g = new ArrayList[n];
+        Arrays.setAll(g, i -> new ArrayList<>());
+        for (int[] edge : edges) {
+            addEdge(edge);
+        }
+    }
+
+    public void addEdge(int[] edge) {
+        g[edge[0]].add(new int[]{edge[1], edge[2]});
+    }
+
+    // 优先队列，优先队列ADT是一种数据结构，它支持插入和删除最小值操作（返回并删除最小元素）或删除最大值操作（返回并删除最大元素）
+    // 升序优先队列，总是先删除最小的元素
+    public int shortestPath(int node1, int node2) {
+        int[] dis = new int[n];
+        Arrays.fill(dis, Integer.MAX_VALUE);
+        dis[node1] = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
+        pq.offer(new int[]{0, node1});
+        while(!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int d = cur[0];
+            int x = cur[1];
+
+            if(x == node2) return d;
+
+            if(d <= dis[x]) {
+                for (int[] edge : g[x]) {
+                    int y = edge[0];
+                    int w = edge[1];
+                    if(dis[y] > dis[x] + w) {
+                        dis[y] = dis[x] + w;
+                        pq.offer(new int[]{dis[y], y});
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
 }
