@@ -1,8 +1,5 @@
 package dynamic_programming;
 
-import com.sun.javafx.image.IntPixelGetter;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class LongestIncreasingSubsequence_300 {

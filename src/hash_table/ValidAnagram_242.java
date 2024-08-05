@@ -1,7 +1,5 @@
 package hash_table;
 
-import jdk.nashorn.internal.ir.WhileNode;
-
 import java.util.Scanner;
 
 public class ValidAnagram_242 {

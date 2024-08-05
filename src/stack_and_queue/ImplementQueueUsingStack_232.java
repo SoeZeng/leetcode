@@ -1,6 +1,5 @@
 package stack_and_queue;
 
-import org.junit.Test;
 
 import java.util.Stack;
 
