@@ -43,13 +43,27 @@ class Solution2264 {
          * 整数0内存中表示为00000000000000000000000000000000，虽然都是0，但是跟上面字符'\0'存储占用长度是不一样的。
          */
         char max = 0;
-        for (int i = 0; i < num.length() - 2; i++) {
-            char c = num.charAt(i);
-            if(c > max && c == num.charAt(i + 1) && c == num.charAt(i + 2)) {
-                max = c;
+//        for (int i = 0; i < num.length() - 2; i++) {
+//            char c = num.charAt(i);
+//            if(c > max && c == num.charAt(i + 1) && c == num.charAt(i + 2)) {
+//                max = c;
+//            }
+//        }
+
+        // 一次遍历优化，用一个计数器 cnt 记录当前匹配长度，如果长度等于 3，则更新答案的最大值。如果相邻字母不同，则重置 cnt
+        int cnt = 1;
+        for (int i = 1; i < num.length(); i++) {
+            if(num.charAt(i) != num.charAt(i - 1)) {
+                cnt = 1;
+                continue;
+            }
+            cnt++;
+            if(cnt == 3 && num.charAt(i) > max) {
+                max = num.charAt(i);
             }
         }
 
         return max > 0 ? String.valueOf(max).repeat(3) : "";
+
     }
 }
