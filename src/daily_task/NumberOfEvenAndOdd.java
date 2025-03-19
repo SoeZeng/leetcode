@@ -15,20 +15,29 @@ class Solution2595 {
 
     public int[] evenOddBit(int n) {
 
-        int even = 0;
-        int odd = 0;
+//        int even = 0;
+//        int odd = 0;
+//
+//        int idx = 0;
+//        while(n > 0) {
+//            if(n % 2 == 1) {
+//                if(idx % 2 == 0) even++;
+//                else odd++;
+//            }
+//            n /= 2;
+//            idx++;
+//        }
+//
+//        return new int[]{even, odd};
 
-        int idx = 0;
-        while(n > 0) {
-            if(n % 2 == 1) {
-                if(idx % 2 == 0) even++;
-                else odd++;
-            }
-            n /= 2;
-            idx++;
+
+        int[] ans = new int[2];
+        for (int i = 0; n > 0; n >>= 1) {
+            ans[i] += n & 1;
+            i ^= 1; // 切换奇偶
         }
+        return ans;
 
-        return new int[]{even, odd};
     }
 
 }
