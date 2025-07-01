@@ -1,4 +1,4 @@
-package 剑指offer;
+package nowcoder;
 
 import java.util.Scanner;
 
