@@ -17,7 +17,7 @@ class Solution_MB8 {
             cnt++;
         }
 
-        if(fast == null && cnt - 1 < k) return null;
+        if(cnt <= k) return null;
 
         while(fast != null) {
             slow = slow.next;
