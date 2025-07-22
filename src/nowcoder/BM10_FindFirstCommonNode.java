@@ -1,6 +1,6 @@
 package nowcoder;
 
-public class FindFirstCommonNode_BM10 {
+public class BM10_FindFirstCommonNode {
 
 }
 
