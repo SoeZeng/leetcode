@@ -26,39 +26,74 @@ class Solution_BM11 {
 //
 //        return dummy.next;
 
-        ListNode p1 = reverseList(head1);
-        ListNode p2 = reverseList(head2);
+//        ListNode p1 = reverseList(head1);
+//        ListNode p2 = reverseList(head2);
+//        ListNode dummyNode = new ListNode(0);
+//        dummyNode.next = null;
+//        int temp = 0;
+//        while(p1 != null && p2 != null) {
+//            int sum = p1.val + p2.val + temp;
+//            temp = sum / 10;
+//            ListNode node = new ListNode(sum % 10);
+//            node.next= dummyNode.next;
+//            dummyNode.next = node;
+//            p1 = p1.next;
+//            p2 = p2.next;
+//        }
+//
+//        ListNode p = p1 == null ? p2 : p1;
+//        while(p != null) {
+//            ListNode tmpNode = p.next;
+//            int sum = p.val + temp;
+//            temp = sum / 10;
+//            p.val = (sum % 10);
+//            p.next = dummyNode.next;
+//            dummyNode.next = p;
+//            p = tmpNode;
+//        }
+//
+//        if(temp == 1) {
+//            ListNode node = new ListNode(temp);
+//            node.next = dummyNode.next;
+//            dummyNode.next = node;
+//        }
+//
+//        return dummyNode.next;
+
+
+        // optimization, reduce the redundancy of code
+        head1 = reverseList(head1);
+        head2 = reverseList(head2);
+
+
+        int val = 0;
         ListNode dummyNode = new ListNode(0);
         dummyNode.next = null;
-        int temp = 0;
-        while(p1 != null && p2 != null) {
-            int sum = p1.val + p2.val + temp;
-            temp = sum / 10;
-            ListNode node = new ListNode(sum % 10);
-            node.next= dummyNode.next;
-            dummyNode.next = node;
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-
-        ListNode p = p1 == null ? p2 : p1;
-        while(p != null) {
-            ListNode tmpNode = p.next;
-            int sum = p.val + temp;
-            temp = sum / 10;
-            p.val = (sum % 10);
+        while(head1 != null || head2 != null) {
+            int sum = 0;
+            if(head1 != null) {
+                sum += head1.val;
+                head1 = head1.next;
+            }
+            if(head2 != null) {
+                sum += head2.val;
+                head2 = head2.next;
+            }
+            sum += val;
+            ListNode p = new ListNode(sum % 10);
             p.next = dummyNode.next;
             dummyNode.next = p;
-            p = tmpNode;
+            val = sum / 10;
         }
 
-        if(temp == 1) {
-            ListNode node = new ListNode(temp);
-            node.next = dummyNode.next;
-            dummyNode.next = node;
+        if(val == 1) {
+            ListNode p = new ListNode(1);
+            p.next = dummyNode.next;
+            dummyNode.next = p;
         }
 
         return dummyNode.next;
+
 
     }
 
