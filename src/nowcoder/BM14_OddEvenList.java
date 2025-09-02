@@ -15,18 +15,13 @@ class Solution_BM14{
         ListNode odd = head;
         ListNode evenHead = head.next;
         ListNode even = evenHead;
-        while(even.next != null && even.next.next != null) {
+        while(even != null && even.next != null) {
             odd.next = even.next;
-            even.next = even.next.next;
-            even = even.next;
             odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
         }
 
-        if(even.next != null) {
-            odd.next = even.next;
-            odd = odd.next;
-            even.next = null;
-        }
         odd.next = evenHead;
         return head;
     }
