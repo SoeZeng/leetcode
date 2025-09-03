@@ -1,6 +1,6 @@
 package nowcoder;
 
-public class RemoveNthFromEnd_BM9 {
+public class BM9_RemoveNthFromEnd {
 }
 
 class Solution_BM9 {
