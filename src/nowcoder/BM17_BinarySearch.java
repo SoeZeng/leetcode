@@ -20,7 +20,7 @@ class Solution_BM17 {
         int left = 0, right = nums.length - 1;
         int mid = (right - left) / 2 + left;
 
-        while(mid >= 0 && mid < nums.length && left <= right) {
+        while(left <= right) {
             if(nums[mid] == target) return mid;
             if(nums[mid] < target) {
                 left = mid + 1;
